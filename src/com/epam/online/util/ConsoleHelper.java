@@ -15,7 +15,7 @@ public class ConsoleHelper {
      * @return input {@link java.lang.String}
      */
     public static String readInputString() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, "UTF-8");
         return scanner.nextLine().replaceAll("\\s", "");
     }
 
