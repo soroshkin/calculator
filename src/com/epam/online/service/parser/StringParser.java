@@ -101,15 +101,14 @@ public class StringParser implements IStringParser {
      * @throws IncorrectBracketsException if {@code OPEN_BRACKET} is not found
      */
     public void manipulateWithExpressionInBrackets(String currentSymbol) throws IncorrectBracketsException {
-        if (currentSymbol.equals(CLOSED_BRACKET)) {
-            String lastOperatorInStack;
-            try {
-                while (!(lastOperatorInStack = mathOperationsStack.pop()).equals(OPEN_BRACKET)) {
-                    expressionToCalculate.push(lastOperatorInStack);
-                }
-            } catch (NoSuchElementException e) {
-                throw new IncorrectBracketsException(INCORRECT_BRACKETS.toString());
+        String lastOperatorInStack;
+        try {
+            while (currentSymbol.equals(CLOSED_BRACKET)
+                    && !(lastOperatorInStack = mathOperationsStack.pop()).equals(OPEN_BRACKET)) {
+                expressionToCalculate.push(lastOperatorInStack);
             }
+        } catch (NoSuchElementException e) {
+            throw new IncorrectBracketsException(INCORRECT_BRACKETS.toString());
         }
     }
 
@@ -138,10 +137,10 @@ public class StringParser implements IStringParser {
      * @throws IncorrectBracketsException thrown if {@code mathOperationsStack} contains {@code OPEN_BRACKET}
      */
     public void finishExpressionParsing() throws IncorrectBracketsException {
-        if (mathOperationsStack.contains(OPEN_BRACKET)) {
-            throw new IncorrectBracketsException(INCORRECT_BRACKETS.toString());
-        } else {
+        if (!mathOperationsStack.contains(OPEN_BRACKET)) {
             mathOperationsStack.forEach(expressionToCalculate::push);
+        } else {
+            throw new IncorrectBracketsException(INCORRECT_BRACKETS.toString());
         }
     }
 
