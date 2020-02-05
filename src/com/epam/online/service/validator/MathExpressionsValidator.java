@@ -12,6 +12,7 @@ import static com.epam.online.enums.RegularExpressionPatterns.MATH_SYMBOLS_PATTE
 import static com.epam.online.enums.Messages.*;
 
 public class MathExpressionsValidator implements IValidator {
+    @Override
     public void validate(String inputString) throws NotValidInputException {
         if (inputString == null || inputString.isEmpty()) {
             throw new EmptyExpressionException(EMPTY_STRING.toString());

@@ -18,6 +18,7 @@ public class Calculation implements ICalculation {
      * @param expression math expression in Reverse Polish notation
      * @return result of expression in BigDecimal representation
      */
+    @Override
     public BigDecimal calculate(Deque<String> expression) throws NotValidInputException, ArithmeticException {
         Deque<BigDecimal> expressionResultStack = new ArrayDeque<>();
 
