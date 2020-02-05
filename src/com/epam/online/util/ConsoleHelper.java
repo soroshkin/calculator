@@ -26,4 +26,9 @@ public class ConsoleHelper {
     public static void enterExpression(String exitApplicationCommand) {
         System.out.println(Messages.INPUT_EXPRESSION.toString() + exitApplicationCommand);
     }
+
+    public static String enterAndReadExpression(String exitApplicationCommand){
+        enterExpression(exitApplicationCommand);
+        return readInputString();
+    }
 }
